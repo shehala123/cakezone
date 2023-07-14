@@ -1,0 +1,101 @@
+</html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+   
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    
+    }
+    .wrapper{
+        width: 1170px;
+        margin: auto;
+    }
+
+    header{
+    background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)) ,url("static/images/bgimg.jpg");
+    height: 20vh;
+    -webkit-background-size:cover;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+}
+    .nav-area{
+        float: right;
+        list-style: none;
+        margin-top: 30px;
+    
+    }
+    .nav-area li {
+       display: inline-block;
+    }
+    .nav-area li{
+        color: #fff;
+        text-decoration: none;
+        padding: 5px 20px;
+        font-size: poppins;
+        font-size: 16px;
+
+    }
+    .nav-area li a:hover{
+        background: #fff;
+        color: #333;
+    }
+    .logo img{
+        width: 100px;
+        float: left;
+        height: auto;
+        margin-top: 30px;
+        
+
+    }
+    
+  </style>
+  </head>
+ 
+  <body>
+    <header>
+        <!-- <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="/static/images/redvelvet.jpg" height="600px" width="400px" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                
+              </div>
+            </div> -->
+        <div class="wrapper">
+            <div class="logo">
+                <img  src="../static/images/logo.jpg" alt="">
+            </div>
+            <div>
+            <ul class="nav-area">
+            
+            
+            <li><a href="{% url 'h' %}">home</a></li>
+           
+                <li><a href="{% url 'abt' %}">About</a></li>
+                <li><a href="{% url 'g' %}">Gallery</a></li>
+                
+                <li><a href="{% url 'co' %}">Contact</a></li>
+                <li><a class="btn btn-danger " href="{% url 'log' %}">LOGIN</a></li>
+            </ul>
+            </div>
+            {% comment %} <div class="welcome-text">
+                <h1>welcome</h1>
+                <a href="{% url 'co' %}">Contact Us</a>
+            </div> {% endcomment %}
+    
+        </header>
+    {% block nav %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="static/css/style.css">
+  <style>
+    *{
+        margin: 0;
+        padding: 0;
+    
+    }
+    .wrapper{
+        width: 1170px;
+        margin: auto;
+    }
+    header{
+        background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)) ,url("static/images/bgimg.jpg");
+        height: 100vh;
+        -webkit-background-size:cover;
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+    }
+    .nav-area{
+        float: right;
+        list-style: none;
+        margin-top: 30px;
+    
+    }
+    .nav-area li {
+       display: inline-block;
+    }
+    .nav-area li{
+        color: #fff;
+        text-decoration: none;
+        padding: 5px 20px;
+        font-size: poppins;
+        font-size: 16px;
+
+    }
+    .nav-area li a:hover{
+        background: #fff;
+        color: #333;
+    }
+    .logo img{
+        width: 100px;
+        float: left;
+        height: auto;
+        margin-top: 30px;
+        
+
+    }
+    .welcomee-text{
+        position:absolute;
+        width: 600px;
+        height: 300px;
+        margin: 20% 30%;
+        text-align: center;
+    }
+    .welcomee-text h1{
+        text-align:center;
+        color: #fff;
+        text-transform: uppercase;
+       
+    }
+    .welcomee-text h2{
+        text-align:center;
+        color: #aaa4a4;
+        
+        
+    }
+    .welcomee-text a{
+        border: 1px solid #fff;
+        padding: 10px 25px;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 14px;
+        margin-top: 20px;
+        display: inline-block;
+        color: #fff;
+    }
+    .welcomee-text a:hover{
+        background: #fff;
+    }
+
+
+  </style>
+</head>
+ 
+  <body>
+    <header>
+    <!-- <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="/static/images/redvelvet.jpg" height="600px" width="400px" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            
+          </div>
+        </div> -->
+    <div class="wrapper">
+        <div class="logo">
+            <img  src="../static/images/logo.jpg" alt="">
+        </div>
+        <div>
+        <ul class="nav-area">
+            
+            
+           
+            <li><a href="{% url 'abt' %}">About Us</a></li>
+            <li><a href="{% url 'g' %}">Gallery</a></li>
+            
+            <li><a href="{% url 'co' %}">Contact</a></li>
+            <li><a href="{% url 'log' %}">LOGIN</a></li>
+        </ul>
+        </div>
+        <div class="welcomee-text">
+            <h1>welcome to CakeZone</h1>
+            <h2>Celebrate your special day with us !!!</h2>
+            <a href="{% url 'co' %}">Contact Us</a>
+        </div>
+
+    </header>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

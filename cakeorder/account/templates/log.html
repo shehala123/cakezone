@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+
+
+{% block base %}
+
+    <h1 align="center">CakeZone</h1>
+    {% comment %} <p>{{user.username}}</p> {% endcomment %}
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="/static/images/redvelvet.jpg" height="600px" width="400px" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          
+        </div>
+      </div>
+    {% if messages %}
+    {% for i in messages %}
+    {% if i.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="alert alert-success alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>{{i}}</strong>
+    </div>
+    {%endif%}
+
+    {% if i.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <div class="alert alert-danger alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>{{i}}</strong>
+    </div>
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+
+    <form class='logform' action="" method="post">
+        {%csrf_token%}
+        
+        <table class="table">
+            {{f.as_table}}
+          
+        </table>
+<button class="btn btn-success">Login</button>
+<div class="go">New user!!!
+  <a href="{% url 'reg' %}">Register</a>
+</div>
+    </form>
+{% endblock base %}
