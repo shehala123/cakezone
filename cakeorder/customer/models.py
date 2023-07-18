@@ -21,8 +21,8 @@ class Order(models.Model):
     product=models.ForeignKey(Product,on_delete=models.CASCADE)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     phone=models.IntegerField()
-    weight=models.CharField(max_length=50)
-    # description=models.CharField(max_length=500)
+    # quantity=models.IntegerField()
+    description = models.TextField(blank=True)
     address=models.CharField(max_length=500)
     options=(
         ("order placed","order placed"),
@@ -33,4 +33,9 @@ class Order(models.Model):
     )
     status=models.CharField(max_length=100,choices=options,default="order placed")
     date=models.DateField(auto_now_add=True)
+    
+    
+    
+    
+    
     

@@ -124,11 +124,15 @@ span.price {
     <div class="container">
       <form action="" method="post">
          {% csrf_token %}
+         <li class="list-group-item">
+         
+          <label for="description">Description:</label><br>
+          <textarea name="description" rows="4" cols="50"></textarea><br>
+       </li>
       
         <div class="row">
           <div class="col-50">
-            <h3>Description</h3>
-            <textarea rows="5" cols="79" name="Description" form="" placeholder="eter your quotes" >enter here.....</textarea>
+            
             <h3>Billing Address</h3>
             <label for="fname"><i class="fa fa-user"></i> Full Name</label>
             <input type="text" id="fname" name="firstname" placeholder="John M. Doe">

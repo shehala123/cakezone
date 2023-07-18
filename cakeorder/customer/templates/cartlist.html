@@ -53,11 +53,13 @@
                Quantity Price: {{i.qtyprice}}.Rs
                 {%endif%}
             </li>
+           
            <li class="list-group-item">
                 <a href="{% url 'checkout' i.id %}" class="btn btn-success">Place Order</a>
                 <a href="{% url 'decart' i.id %}" class="btn btn-danger">Remove from cart</a>
            </li>
-            
+       
+       
     </div>
 
 </div>

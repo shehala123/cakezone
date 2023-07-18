@@ -8,5 +8,9 @@ urlpatterns = [
     path('acart/<int:id>',AddCart.as_view(),name="acart"),
     path('cartv',Cartlistview.as_view(),name="vcart"),
     path('dcart/<int:id>',deletecart,name="decart"),
-    path('check/<int:cid>',Checkout.as_view(),name="checkout")
+    path('check/<int:cid>',Checkout.as_view(),name="checkout"),
+    path('orders',OrderView.as_view(),name="order"),
+     path('cancelorder/<int:id>',cancel_order,name="orderc"),
+    
+   
 ]

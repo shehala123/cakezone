@@ -1,29 +1,37 @@
 from typing import Any,Dict
+from django.db.models.query import QuerySet
 from django.shortcuts import render,redirect
 from django.views.generic import View,TemplateView,ListView,DetailView
-# from django.utils.decorators import method_decorator
+from django.utils.decorators import method_decorator
 from store.models import Product
 from django.contrib import messages
 from customer.models import Cart,Order
 from django.db.models import Sum
 
+
+
 # Create your views here.
 
 
-# def signin_reqyired(fn):
-#     def inner(request,*args,**kwargs):
-#         if request.user.is_authenticated:
-#             return fn(request,*args,**kwargs)
-#         else:
-#             return red
+def signin_required(fn):
+    def inner(request,*args,**kwargs):
+        if request.user.is_authenticated:
+           return fn(request,*args,**kwargs)
+        else:
+            messages.error(request,"Please Login First!!!")
+            return redirect('log')
+    return inner
 
-# @method_decorator(login_required,name='dispatch')    
+
+
+@method_decorator(signin_required,name="dispatch")    
 class CustHomeView(ListView):
     
     template_name="custhome.html"
     model=Product
     context_object_name="data"
     
+@method_decorator(signin_required,name="dispatch")     
 class Productdetailview(DetailView):
     
     template_name="productdetails.html"
@@ -39,26 +47,29 @@ class Productdetailview(DetailView):
         messages.success(request,"Product added to cart!!!")
         return redirect("ch")
     
+@method_decorator(signin_required,name="dispatch")     
 class AddCart(DetailView):
     
     def get(self,request,*args,**kwargs):
         prod=Product.objects.get(id=kwargs.get("id"))
         quantity=request.POST.get("qtyprice")
         
+        
         user=request.user
-        Cart.objects.create(product=prod,user=user,quantity=quantity)
+        Cart.objects.create(product=prod,user=user,quantity=quantity,description=description)
         messages.success(request,"Product added to cart!!!")
         return redirect("ch")
     
     # def total_price(self):
     #     return self.total_quantity * product.price
     # qty=print(product)
-    
+@method_decorator(signin_required,name="dispatch")     
 class Cartlistview(ListView):
     
     template_name="cartlist.html"
     model=Cart
     context_object_name="cartitem"
+    
     
     def get_queryset(self):
         
@@ -67,7 +78,7 @@ class Cartlistview(ListView):
         return {"items":cart,"total":total}
     
     
-
+@signin_required
 def deletecart(request,id):
     
     cart=Cart.objects.get(id=id)
@@ -75,6 +86,7 @@ def deletecart(request,id):
     messages.error(request,"cart item removed!!!")
     return redirect("vcart")
 
+@method_decorator(signin_required,name="dispatch")  
 class Checkout(View):
     
     def get(self,request,*args,**kwargs):
@@ -84,11 +96,12 @@ class Checkout(View):
         cart=Cart.objects.get(id=id)
         prod=cart.product
         user=request.user
-        # weight=request.POST.get("weight")
-        # description=request.POST.get("description")
+        # quantity=Cart.quantity
+        description=request.POST.get("description")
+        print(description)
         address=request.POST.get("address")
         phone=request.POST.get("phone") 
-        Order.objects.create(product=prod,user=user,address=address,phone=phone)
+        Order.objects.create(product=prod,user=user,address=address,phone=phone,description=description)
         cart.status="order placed"
         cart.save()
         messages.success(request,"order placed successfully!!!")
@@ -103,7 +116,7 @@ class Checkout(View):
 #     model = Product
 #     template_name = 'search.html'
 #     queryset = Product.objects.filter(name__icontains=' Choco Flake')
-
+@method_decorator(signin_required,name="dispatch")  
 class Search(View):
    
     def get(self,request,*args,**kwargs):
@@ -113,4 +126,24 @@ class Search(View):
         
         context={"searchpro":product,"searchcat":cat}
         return render (request,'search.html',context)
-        
+
+@method_decorator(signin_required,name="dispatch")  
+class OrderView(ListView):
+   template_name='orders.html'
+   model=Order
+   context_object_name="order"
+   def get_queryset(self):
+       order=Order.objects.filter(user=self.request.user)
+       return {'order':order}
+   
+@signin_required
+def cancel_order(request,id):
+    order=Order.objects.get(id=id)
+    order.status="Cancel"
+    order.save()
+    messages.success(request,"Order Cancelled")
+    return redirect('order')
+
+
+
+

@@ -15,10 +15,10 @@
         <p>{{product.description}}</p>
         <p>RS:{{product.price}}</p>
         <form method="post">
-            {% csrf_token %}
+           {% csrf_token %} 
         <label for="fname">Quantity:</label>
         <input type="number" id="qty" name="quantity" value="1"><br><br>
-        <button class="btn btn-success">Add</button>
+        <button class="btn btn-success">Add to cart</button>
         </form>
         <p>
             <!-- <a href="{% url 'acart' product.id %}" class="btn btn-success">Add to cart</a> -->
